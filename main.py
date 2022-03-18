@@ -188,8 +188,10 @@ print("By dodać dwie tablice o różnych rozmiarach, należy zwiększyć wymiar
 print("\n\nWprowadzam macierz 'a':")
 a = np.random.randint(0, 100, size=(5, 5))
 print(a)
+print("Sortuje wiersze rosnąco")
 print(np.sort(a))
-print(a.sort(axis=0))
+print("Sortuję kolumny malejąco:")
+print(np.sort(a, axis=0)[::-1])
 
 
 print("\nWprowadzam macierz 'b':")
@@ -321,16 +323,12 @@ print(np.vstack((a, b)))
 print("\n\nTworzę macierz:")
 a = np.arange(24).reshape((4, 6))
 print(a)
-print("Wykonuje kopię macierzy i wycinam z kopii lewą połówkę ")
-b = a[:, [3, 4, 5]]
-print(b)
-print("'strides' kopi macierzy to:")
-print(b.strides)
 print("Sumuję pierwszy blok (kremowy):")
 print(np.sum(np.lib.stride_tricks.as_strided(a, shape=(2, 3), strides=(24, 4))))
 print("Sumuję drugi blok (zielony):")
-print(np.sum(np.lib.stride_tricks.as_strided(b, shape=(2, 3), strides=(4, 16))))
+print(np.sum(np.lib.stride_tricks.as_strided(a+3, shape=(2, 3), strides=(24, 4))))
 print("Sumuję trzeci blok (niebieski):")
-blue = a[[2, 3], :]
-print(np.sum(np.lib.stride_tricks.as_strided(blue, shape=(2, 3), strides=(24, 4))))
+print(np.sum(np.lib.stride_tricks.as_strided(a+12, shape=(2, 3), strides=(24, 4))))
+print("Sumuję czwarty blok (czerwony):")
+print(np.sum(np.lib.stride_tricks.as_strided(a+15, shape=(2, 3), strides=(24, 4))))
 
